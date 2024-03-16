@@ -4,6 +4,8 @@ CXXFLAGS := -Wall -Wextra -Werror -std=c++98 -MMD -MP
 # CXXFLAGS += -pedantic-errors
 
 SRCS := main.cpp \
+		new_infile.cpp \
+		new_outfile.cpp \
 
 OBJS := $(SRCS:%.cpp=%.o)
 

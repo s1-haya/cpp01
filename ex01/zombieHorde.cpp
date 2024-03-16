@@ -13,11 +13,3 @@ void	announceZombieHorde(Zombie* horde, int n) {
 		horde[i].announce();
 	}
 }
-
-void	deleteZombieHorde(Zombie* horde, int n) {
-	// for (int i = 0; i < n; i++) {
-	// 	delete horde[i];
-	// }
-	(void) n;
-	delete horde;
-}

@@ -3,8 +3,7 @@
 #define SUCCESS 0
 #define FAILURE 1
 
-void step1_initialization()
-{
+void step1_initialization() {
 	std::cout << "STEP 1: INITIALIZATION" << std::endl;
 	std::string string = "HI THIS IS BRAIN";
 	// Declare and initialize at the same time
@@ -22,8 +21,7 @@ void step1_initialization()
 	std::cout << "ref   : " << stringREF << std::endl;
 }
 
-void step2_reassignment()
-{
+void step2_reassignment() {
 	std::cout << "STEP 2: REASSIGNEMNT" << std::endl;
 	std::string string = "HI THIS IS BRAIN";
 	std::string tmp = "TMP";
@@ -45,15 +43,13 @@ void step2_reassignment()
 	// std::cout << "ref  : " << stringREF << std::endl;
 	// std::string &&stringREF_of_REF = stringREF;
 
-
 	std::string &stringREF_tmp = stringREF;
 	string = "PLEASE CHANGE THIS BRAIN";
 	std::cout << "ref_tmp         : " << stringREF_tmp << std::endl;
 	std::cout << "ptr_of_ref_tmp  : " << &stringREF_tmp << std::endl;
 }
 
-void step3_memory_adress()
-{
+void step3_memory_adress() {
 	std::cout << "STEP 3: MEMORY_ADRESS" << std::endl;
 	std::string string = "HI THIS IS BRAIN";
 	std::cout << "value        : " << &string << std::endl;
@@ -66,8 +62,7 @@ void step3_memory_adress()
 	std::cout << "ref          : " << &stringREF << std::endl;
 }
 
-void step4_null_value()
-{
+void step4_null_value() {
 	std::cout << "STEP 4: NULL_VALUE" << std::endl;
 	std::string string = "HI THIS IS BRAIN";
 	std::string *stringPTR = &string;

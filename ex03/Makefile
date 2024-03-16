@@ -1,4 +1,4 @@
-NAME := BraiiiiiiinnnzzzZ
+NAME := Unnecessary_violence
 CXX := c++
 CXXFLAGS := -Wall -Wextra -Werror -std=c++98 -MMD -MP
 # CXXFLAGS += -pedantic-errors
@@ -25,7 +25,7 @@ $(NAME): $(OBJS)
 	$(CXX) $(CXXFLAGS) $(OBJS) $(INCLUDES) -o $@
 
 clean:
-	$(RM) $(OBJS)
+	$(RM) $(OBJS) $(DEPS)
 
 fclean: clean
 	$(RM) $(NAME)

@@ -1,9 +1,10 @@
-NAME := HI_THIS_IS_BRAIN
+NAME := harlFilter
 CXX := c++
 CXXFLAGS := -Wall -Wextra -Werror -std=c++98 -MMD -MP
 # CXXFLAGS += -pedantic-errors
 
 SRCS := main.cpp \
+		Harl.cpp
 
 OBJS := $(SRCS:%.cpp=%.o)
 

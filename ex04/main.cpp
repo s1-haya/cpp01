@@ -1,35 +1,78 @@
 #include <iostream>
+#include <fstream>
 
 #define SUCCESS (0)
 #define ERROR (1)
 
-void printf_correct_format()
+void printf_correct_format(const std::string error_message)
 {
-	std::cerr << "Please use the following format when running the program:" << std::endl;
-	std::cerr << "./sed_is_for_losers <filename> <pre-change string> <post-change string>\n" << std::endl;
-	std::cerr << "Where:" << std::endl;
-	std::cerr << "- <filename> is the name of the file you want to modify.\n" << std::endl;
-	std::cerr << "- <pre-change string> is the string in the file that you want to replace.\n" << std::endl;
-	std::cerr << "- <post-change string> is the string that will replace the pre-change string.\n" << std::endl;
-	std::cerr << "Example: ./sed_is_for_losers example.txt hello world" << std::endl;
+	std::cerr << error_message << std::endl;
+	std::cerr << "Usage: ./sed_is_for_losers <filename> <s1> <s2>" << std::endl;
 }
 
 bool check_init(int argc, char *argv[])
 {
-	(void)argv;
-	if (argc != 3)
+	if (argc != 4)
 	{
-		std::cerr << "Error: Incorrect number of arguments\n" << std::endl;
-		printf_correct_format();
+		printf_correct_format("Error: Incorrect number of arguments\n");
+		return (false);
+	}
+	if (argv[2][0] == '\0' || argv[3][0] == '\0')
+	{
+		printf_correct_format("Error: Incorrect arguments. Please enter a string\n");
 		return (false);
 	}
 	return (true);
 }
 
+std::string replace_target_string_in_line(std::string line, const std::string& from, const std::string& to)
+{
+	size_t start_position = line.find(from, 0);
+	std::string replace_target_string;
+	while (start_position != std::string::npos)
+	{
+		std::cout << line << std::endl;
+		replace_target_string += line.substr(0, start_position) + to;
+		line = line.substr(start_position + from.length());
+		start_position = line.find(from, start_position);
+	}
+	replace_target_string += line;
+	return (replace_target_string);
+}
+
+void replace_target_string_in_file(const std::string filename, const std::string& from, const std::string& to, bool *result)
+{
+	std::ifstream infile(filename);
+	if (!infile.is_open())
+	{
+		*result = false;
+		printf_correct_format("Error: Faild to open " + filename + " for reading.\n");
+		return ;
+	}
+	std::ofstream outfile(filename + ".replace");
+	if (!*result)
+	{
+		infile.close();
+		*result = false;
+		printf_correct_format("Error: Faild to open " + filename + " for writing.\n");
+		return ;
+	}
+	std::string line;
+	while (getline(infile, line))
+		outfile << replace_target_string_in_line(line, from, to) << std::endl;
+	infile.close();
+	outfile.close();
+}
+
 int main(int argc, char *argv[])
 {
+	bool	result;
+
+	result = true;
 	if (!check_init(argc, argv))
 		return (ERROR);
-	std::cout << argv[0] << std::endl;
+	replace_target_string_in_file(argv[1], argv[2], argv[3], &result);
+	if (!result)
+		return (ERROR);
 	return (SUCCESS);
 }
