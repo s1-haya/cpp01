@@ -22,10 +22,10 @@ void Harl::error(void)
 
 void Harl::complain(std::string type)
 {
-	size_t index = 4;
 	std::string complains[] = {"DEBUG", "INFO", "WARNING", "ERROR"};
 	void (Harl::*message[])() = {&Harl::debug, &Harl::info, &Harl::warning, &Harl::error};
-	for (size_t i = 0; i < 4; i++) {
+	size_t index = sizeof(complains) / sizeof(std::string);
+	for (size_t i = 0; i < index; i++) {
 		if (complains[i] == type)
 		{
 			index = i;

@@ -24,7 +24,7 @@ void Harl::complain(std::string type)
 {
 	std::string complains[] = {"DEBUG", "INFO", "WARNING", "ERROR"};
 	void (Harl::*message[])() = {&Harl::debug, &Harl::info, &Harl::warning, &Harl::error};
-	for (size_t i = 0; i < 4; i++) {
+	for (size_t i = 0; i < sizeof(complains) / sizeof(std::string); i++) {
 		if (complains[i] == type)
 		{
 			(this->*message[i])();

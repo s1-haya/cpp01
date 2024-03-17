@@ -4,6 +4,7 @@ CXXFLAGS := -Wall -Wextra -Werror -std=c++98 -MMD -MP
 # CXXFLAGS += -pedantic-errors
 
 SRCS := main.cpp \
+		test.cpp
 
 OBJS := $(SRCS:%.cpp=%.o)
 
@@ -28,5 +29,8 @@ fclean: clean
 	$(RM) $(NAME)
 
 re: fclean all
+
+debug: CXXFLAGS += -DDEBUG
+debug: re
 
 -include $(DEPS)

@@ -13,5 +13,8 @@ Weapon*	HumanB::getWeapon() const {
 }
 
 void	HumanB::attack() {
-	std::cout << this->name << " attacks with their " << getWeapon()->getType() << std::endl;
+	if (getWeapon() == NULL)
+		std::cout << this->name << " don't set weapon " << std::endl;
+	else
+		std::cout << this->name << " attacks with their " << getWeapon()->getType() << std::endl;
 }
